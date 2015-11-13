@@ -10,12 +10,16 @@ Do you like painting?
 
 ## Writeup
 
-This challenge was obvious in what it was primarily because of the name of the text file, `qr.txt`.
+This challenge wasn't too hard to figure out what it wanted us to do primarily because of the name of the text file, `qr.txt`.
 As well, the format of the file was already set up to be a list of tuples in Python, suggesting to use Python.
 Lastly, the hint suggests we need to paint something.
 All together, use Python to paint a qr code.
 Tasked with creating qr code, the real challenge was to do graphics in Python, since I've yet to try it.
-For this, I used the popular graphics.py library.
+For this, I used the popular graphics.py library.  
+
+One of the things I should mention here is that the coordinates are actually the white squares as opposed to the black for a QR code.
+This tripped me for a bit trying to get various scanners to detect the image, but only getting errors.  
+
 Here is the Python program constructed:  
 
 ```python
@@ -107,9 +111,10 @@ for x,y in coor:
 window.getMouse()
 ```  
 
-One of the things I should mention here is that the coordinates are actually the white squares as opposed to the black for a QR code.
-This tripped me up for a bit trying various scanners to detect the image.
-The program above will create a window on the screen displaying the QR code that can then be read through a number of readers.
+The program above will create a window on the screen displaying the QR code that can then be read through a number of readers.  
+
+![Generated QR Code](images/qr.png)  
+
 My specific route was to screenshot the inside of the window and save it to a file called `qr.png`.
 From there, I just ran:  
 
