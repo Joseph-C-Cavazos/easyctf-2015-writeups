@@ -86,7 +86,8 @@ First things first, we need to strip out all the extra info.
 That can be done with a pipe to sed.  
 
 ```sh
-bill@windows ~/easy $ convert shades.png -format %c histogram:info:- | sed -n 's/^.*#\([^ ][^ ]*\) .*$/\1/p'
+bill@windows ~/easy $ convert shades.png -format %c histogram:info:- \
+> | sed -n 's/^.*#\([^ ][^ ]*\) .*$/\1/p'
 000000
 050505
 0A0A0A
@@ -146,7 +147,15 @@ With this, the basic goal of the script is to have it run alongside the output w
 If all assumptions are correct, this should highlight the missing shade of gray.  
 
 ```sh
-bill@windows ~/easy $ convert shades.png -format %c histogram:info:- | sed -n 's/^.*#\([^ ][^ ]*\) .*$/\1/p' | perl -e '$i = 0; while (<>) { $tmp = sprintf "%02X", $i; $i += 5; die $tmp x 3 if not /$tmp/; }'
+bill@windows ~/easy $ convert shades.png -format %c histogram:info:- \
+> | sed -n 's/^.*#\([^ ][^ ]*\) .*$/\1/p' \
+> | perl -e '$i = 0;
+> while (<>)
+> {
+> $tmp = sprintf "%02X", $i;
+> $i += 5;
+> die $tmp x 3 if not /$tmp/;
+> }'
 505050 at -e line 1, <> line 17.
 ```  
 
